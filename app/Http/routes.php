@@ -11,10 +11,34 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::auth();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/', [
+    'as'    =>  'index',
+    'uses'  =>  'HomeController@index'
+] );
+
+Route::get('/comment/new', [
+    'as'    =>  'new_comment',
+    'uses'  =>  'CommentsController@show_AddForm'
+] );
+
+Route::post('/comment/new', [
+    'as'    =>  'save_comment',
+    'uses'  =>  'CommentsController@save'
+] );
+
+Route::get('/all_users', [
+    'as'    =>  'all_users',
+    'uses'  =>  'CommentsController@show_all'
+] );
+
+Route::get('/transfer', [
+    'as'    =>  'get_transfer',
+    'uses'  =>  'TransferController@get_transfer'
+] );
+
+Route::post('/transfer', [
+    'as'    =>  'post_transfer',
+    'uses'  =>  'TransferController@post_transfer'
+] );
